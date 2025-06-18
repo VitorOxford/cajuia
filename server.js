@@ -2,11 +2,17 @@ const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
 const multer = require('multer');
+const cors = require('cors'); // Importe o pacote cors
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware para servir arquivos estáticos (index.html, produtos.json, imagens, etc)
+// Middleware para habilitar CORS
+// Isso deve vir ANTES de suas rotas e do 'express.static'
+app.use(cors());
+
+// Middleware para servir arquivos estáticos (backend_cajuia.json, imagens, etc)
+// O ideal é colocar seus arquivos públicos dentro de uma pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware para receber dados JSON no corpo das requisições
@@ -20,17 +26,11 @@ app.get('/ping', (req, res) => {
   res.send('Servidor ativo e funcionando!');
 });
 
-// Endpoint para servir JSON dinâmico se quiser buscar de outro lugar
-// Exemplo: fetch('https://render.com/api/produtos.json')
-app.get('/api/produtos', async (req, res) => {
-  try {
-    const response = await fetch('https://cajuia.onrender.com/produtos.json');
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar produtos' });
-  }
+// Endpoint para servir o JSON local diretamente
+app.get('/backend_cajuia.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'backend_cajuia.json'));
 });
+
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
