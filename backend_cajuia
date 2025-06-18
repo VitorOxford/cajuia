@@ -1,0 +1,83 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Vestidos",
+      "icone": "https://link-da-imagem.com/vestidos.png"
+    }
+  ],
+  "produtos": [
+    {
+      "id": 101,
+      "categoriaId": 1,
+      "nome": "Vestido Floral Bege",
+      "descricao": "Vestido leve e fluido com detalhes florais, ideal para dias quentes.",
+      "preco": 189.90,
+      "disponivel": true,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/10.jpg?v=1748519189",
+      "variacoes": {
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Bege", "Off-white"]
+      },
+      "estoque": {
+        "P": 4,
+        "M": 2,
+        "G": 1
+      }
+    },
+    {
+      "id": 102,
+      "categoriaId": 1,
+      "nome": "Vestido Marrom Elegante",
+      "descricao": "Vestido sofisticado com tecido acetinado e caimento estruturado.",
+      "preco": 229.90,
+      "disponivel": true,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
+      "variacoes": {
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Marrom", "Caramelo"]
+      },
+      "estoque": {
+        "P": 5,
+        "M": 3,
+        "G": 2
+      }
+    },
+    {
+      "id": 103,
+      "categoriaId": 1,
+      "nome": "Vestido Longo Fenda Lateral",
+      "descricao": "Vestido longo com fenda lateral elegante e alças finas.",
+      "preco": 259.90,
+      "disponivel": true,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/3_ad5c2bf4-f898-46ba-8e84-fe525db65958.jpg?v=1748519188",
+      "variacoes": {
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Preto", "Verde"]
+      },
+      "estoque": {
+        "P": 2,
+        "M": 4,
+        "G": 0
+      }
+    },
+    {
+      "id": 104,
+      "categoriaId": 1,
+      "nome": "Vestido Minimalista Marrom",
+      "descricao": "Modelo minimalista, leve e com toque macio para uso casual e elegante.",
+      "preco": 199.90,
+      "disponivel": true,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
+      "variacoes": {
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Marrom"]
+      },
+      "estoque": {
+        "P": 6,
+        "M": 1,
+        "G": 2
+      }
+    }
+  ]
+}
