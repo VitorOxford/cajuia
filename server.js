@@ -1,36 +1,40 @@
 const express = require('express');
 const path = require('path');
-const fetch = require('node-fetch');
-const multer = require('multer');
-const cors = require('cors'); // Importe o pacote cors
+const fs = require('fs'); // Módulo File System para salvar o arquivo
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware para habilitar CORS
-// Isso deve vir ANTES de suas rotas e do 'express.static'
+// Middlewares
 app.use(cors());
+app.use(express.json({ limit: '5mb' })); // Permite receber JSONs grandes
+app.use(express.static(path.join(__dirname, 'public'))); // Se tiver uma pasta 'public'
 
-// Middleware para servir arquivos estáticos (backend_cajuia.json, imagens, etc)
-// O ideal é colocar seus arquivos públicos dentro de uma pasta 'public'
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Middleware para receber dados JSON no corpo das requisições
-app.use(express.json());
-
-// Configuração do Multer (caso queira ativar upload no futuro)
-const upload = multer({ dest: 'uploads/' });
-
-// Endpoint opcional para verificar se o servidor está funcionando
-app.get('/ping', (req, res) => {
-  res.send('Servidor ativo e funcionando!');
-});
-
-// Endpoint para servir o JSON local diretamente
+// Rota GET para servir o JSON atual
 app.get('/backend_cajuia.json', (req, res) => {
   res.sendFile(path.join(__dirname, 'backend_cajuia.json'));
 });
 
+// NOVA ROTA POST PARA RECEBER E SALVAR OS DADOS
+app.post('/atualizar-json', (req, res) => {
+  const newData = req.body;
+  const filePath = path.join(__dirname, 'backend_cajuia.json');
+
+  // Converte o JSON recebido para uma string formatada
+  const jsonString = JSON.stringify(newData, null, 2);
+
+  // Escreve a nova string no arquivo, sobrescrevendo o conteúdo antigo
+  fs.writeFile(filePath, jsonString, 'utf8', (err) => {
+    if (err) {
+      console.error("Erro ao salvar o arquivo:", err);
+      return res.status(500).json({ success: false, message: 'Erro ao salvar os dados no servidor.' });
+    }
+    
+    console.log("Arquivo backend_cajuia.json atualizado com sucesso!");
+    res.status(200).json({ success: true, message: 'Dados salvos com sucesso!' });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
