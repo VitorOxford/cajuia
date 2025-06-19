@@ -1,4 +1,12 @@
 {
+  "personalizacao": {
+    "heroBanner": {
+      "imagemFundo": "https://images.pexels.com/photos/3755722/pexels-photo-3755722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "titulo": "Promoção de Inverno",
+      "desconto": "45% OFF",
+      "subtitulo": "*Em todas as blusas selecionadas"
+    }
+  },
   "categorias": [
     {
       "id": 1,
@@ -12,12 +20,19 @@
       "categoriaId": 1,
       "nome": "Vestido Floral Bege",
       "descricao": "Vestido leve e fluido com detalhes florais, ideal para dias quentes.",
-      "preco": 189.90,
+      "preco": 189.9,
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/10.jpg?v=1748519189",
       "variacoes": {
-        "tamanhos": ["P", "M", "G"],
-        "cores": ["Bege", "Off-white"]
+        "tamanhos": [
+          "P",
+          "M",
+          "G"
+        ],
+        "cores": [
+          "Bege",
+          "Off-white"
+        ]
       },
       "estoque": {
         "P": 4,
@@ -30,12 +45,19 @@
       "categoriaId": 1,
       "nome": "Vestido Marrom Elegante",
       "descricao": "Vestido sofisticado com tecido acetinado e caimento estruturado.",
-      "preco": 229.90,
+      "preco": 229.9,
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
       "variacoes": {
-        "tamanhos": ["P", "M", "G"],
-        "cores": ["Marrom", "Caramelo"]
+        "tamanhos": [
+          "P",
+          "M",
+          "G"
+        ],
+        "cores": [
+          "Marrom",
+          "Caramelo"
+        ]
       },
       "estoque": {
         "P": 5,
@@ -48,12 +70,19 @@
       "categoriaId": 1,
       "nome": "Vestido Longo Fenda Lateral",
       "descricao": "Vestido longo com fenda lateral elegante e alças finas.",
-      "preco": 259.90,
+      "preco": 259.9,
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/3_ad5c2bf4-f898-46ba-8e84-fe525db65958.jpg?v=1748519188",
       "variacoes": {
-        "tamanhos": ["P", "M", "G"],
-        "cores": ["Preto", "Verde"]
+        "tamanhos": [
+          "P",
+          "M",
+          "G"
+        ],
+        "cores": [
+          "Preto",
+          "Verde"
+        ]
       },
       "estoque": {
         "P": 2,
@@ -66,12 +95,18 @@
       "categoriaId": 1,
       "nome": "Vestido Minimalista Marrom",
       "descricao": "Modelo minimalista, leve e com toque macio para uso casual e elegante.",
-      "preco": 199.90,
+      "preco": 199.9,
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
       "variacoes": {
-        "tamanhos": ["P", "M", "G"],
-        "cores": ["Marrom"]
+        "tamanhos": [
+          "P",
+          "M",
+          "G"
+        ],
+        "cores": [
+          "Marrom"
+        ]
       },
       "estoque": {
         "P": 6,
