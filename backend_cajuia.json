@@ -1,11 +1,22 @@
 {
   "personalizacao": {
-    "heroBanner": {
-      "imagemFundo": "https://images.pexels.com/photos/3755722/pexels-photo-3755722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "titulo": "Promoção de Inverno",
-      "desconto": "45% OFF",
-      "subtitulo": "*Em todas as blusas selecionadas"
-    }
+    "heroAtivo": true,
+    "heroBanners": [
+      {
+        "id": 1718824200001,
+        "imagemFundo": "https://images.pexels.com/photos/3755722/pexels-photo-3755722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "titulo": "Promoção de Inverno",
+        "desconto": "45% OFF",
+        "subtitulo": "*Em todas as blusas selecionadas"
+      },
+      {
+        "id": 1718824200002,
+        "imagemFundo": "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "titulo": "Nova Coleção",
+        "desconto": "Essenciais",
+        "subtitulo": "Descubra looks para toda estação"
+      }
+    ]
   },
   "categorias": [
     {
@@ -24,21 +35,10 @@
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/10.jpg?v=1748519189",
       "variacoes": {
-        "tamanhos": [
-          "P",
-          "M",
-          "G"
-        ],
-        "cores": [
-          "Bege",
-          "Off-white"
-        ]
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Bege", "Off-white"]
       },
-      "estoque": {
-        "P": 4,
-        "M": 2,
-        "G": 1
-      }
+      "estoque": { "P": 4, "M": 2, "G": 1 }
     },
     {
       "id": 102,
@@ -49,21 +49,10 @@
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
       "variacoes": {
-        "tamanhos": [
-          "P",
-          "M",
-          "G"
-        ],
-        "cores": [
-          "Marrom",
-          "Caramelo"
-        ]
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Marrom", "Caramelo"]
       },
-      "estoque": {
-        "P": 5,
-        "M": 3,
-        "G": 2
-      }
+      "estoque": { "P": 5, "M": 3, "G": 2 }
     },
     {
       "id": 103,
@@ -74,21 +63,10 @@
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/3_ad5c2bf4-f898-46ba-8e84-fe525db65958.jpg?v=1748519188",
       "variacoes": {
-        "tamanhos": [
-          "P",
-          "M",
-          "G"
-        ],
-        "cores": [
-          "Preto",
-          "Verde"
-        ]
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Preto", "Verde"]
       },
-      "estoque": {
-        "P": 2,
-        "M": 4,
-        "G": 0
-      }
+      "estoque": { "P": 2, "M": 4, "G": 0 }
     },
     {
       "id": 104,
@@ -99,20 +77,10 @@
       "disponivel": true,
       "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
       "variacoes": {
-        "tamanhos": [
-          "P",
-          "M",
-          "G"
-        ],
-        "cores": [
-          "Marrom"
-        ]
+        "tamanhos": ["P", "M", "G"],
+        "cores": ["Marrom"]
       },
-      "estoque": {
-        "P": 6,
-        "M": 1,
-        "G": 2
-      }
+      "estoque": { "P": 6, "M": 1, "G": 2 }
     }
   ]
 }
