@@ -50,6 +50,16 @@
           "Off-white"
         ]
       },
+      "habilitarTamanhos": true,
+      "habilitarCores": true,
+      "imagensVariacoes": [
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/10.jpg?v=1748519189",
+        "",
+        ""
+      ],
+      "precoPromocional": 159.9,
+      "mostrarPrecoPromocional": true,
+      "precoPromocionalAtivo": true,
       "estoque": {
         "P": 4,
         "M": 2,
@@ -75,6 +85,16 @@
           "Caramelo"
         ]
       },
+      "habilitarTamanhos": true,
+      "habilitarCores": true,
+      "imagensVariacoes": [
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
+        "",
+        ""
+      ],
+      "precoPromocional": null,
+      "mostrarPrecoPromocional": false,
+      "precoPromocionalAtivo": false,
       "estoque": {
         "P": 5,
         "M": 3,
@@ -100,6 +120,16 @@
           "Verde"
         ]
       },
+      "habilitarTamanhos": true,
+      "habilitarCores": true,
+      "imagensVariacoes": [
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/3_ad5c2bf4-f898-46ba-8e84-fe525db65958.jpg?v=1748519188",
+        "",
+        ""
+      ],
+      "precoPromocional": 219.9,
+      "mostrarPrecoPromocional": true,
+      "precoPromocionalAtivo": true,
       "estoque": {
         "P": 2,
         "M": 4,
@@ -124,6 +154,16 @@
           "Marrom"
         ]
       },
+      "habilitarTamanhos": true,
+      "habilitarCores": true,
+      "imagensVariacoes": [
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
+        "",
+        ""
+      ],
+      "precoPromocional": null,
+      "mostrarPrecoPromocional": false,
+      "precoPromocionalAtivo": false,
       "estoque": {
         "P": 6,
         "M": 1,
