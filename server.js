@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Stone credentials
 const STONE_CODE = '340457949';
-const SAAK = '31744659';
+const SAAK = '31743219';
 
 // Middlewares
 app.use(cors());
@@ -59,6 +59,7 @@ app.post('/criar-link-stone', async (req, res) => {
       res.json({ url: data.payment_link_url });
     } else {
       res.status(400).json({ error: data });
+      console.log('Erro Stone:', data);
     }
   } catch (err) {
     res.status(500).json({ error: err.message });
