@@ -39,7 +39,7 @@ app.post('/atualizar-json', (req, res) => {
 
 // NOVA ROTA PARA CRIAR LINK DE PAGAMENTO STONE
 app.post('/criar-link-stone', async (req, res) => {
-  const { valor, descricao } = req.body;
+  const { valor, descricao, cliente } = req.body;
   try {
     const response = await fetch('https://api.stone.com.br/link/v3/charge', {
       method: 'POST',
@@ -49,9 +49,13 @@ app.post('/criar-link-stone', async (req, res) => {
         'saak': SAAK
       },
       body: JSON.stringify({
-        amount: Math.round(valor * 100), // valor em centavos
+        amount: Math.round(valor * 100),
         description: descricao || 'Pedido Cajuia',
-        payment_methods: ['credit_card', 'pix']
+        payment_methods: ['credit_card', 'pix'],
+        customer: {
+          name: cliente?.nome || "Cliente Cajuia",
+          email: cliente?.email || "cliente@cajuia.com.br"
+        }
       })
     });
     const data = await response.json();
