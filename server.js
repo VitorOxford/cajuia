@@ -132,4 +132,5 @@ app.listen(PORT, () => {
   console.log("==========================================================");
   console.log(`[INFO] Servidor rodando em http://localhost:${PORT}`);
   console.log(`[INFO] Data/Hora: ${new Date().toISOString()}`);
-  console.log("==========================================================
+  console.log("==========================================================");
+});
