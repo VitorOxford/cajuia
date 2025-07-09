@@ -7,9 +7,8 @@ const fetch = require('node-fetch'); // npm install node-fetch
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Stone credentials
-const STONE_CODE = '340457949';
-const SAAK = '31743219';
+// Pagar.me credentials
+const PAGARME_API_KEY = 'sk_test_26a99d100c24493bb4680e98578363af';
 
 // Middlewares
 app.use(cors());
@@ -37,85 +36,62 @@ app.post('/atualizar-json', (req, res) => {
   });
 });
 
-// Rota para criar link de pagamento Stone com logs detalhados
-app.post('/criar-link-stone', async (req, res) => {
+// Nova rota para criar link de pagamento Pagar.me
+app.post('/criar-link-pagarme', async (req, res) => {
   const { valor, descricao, cliente, itens } = req.body;
-
-  // Log do corpo recebido
-  console.log('--- [Stone] Requisição recebida ---');
-  console.log('Body recebido:', JSON.stringify(req.body, null, 2));
 
   // Validação básica dos campos
   if (!valor || typeof valor !== 'number' || valor <= 0) {
-    console.error('[Stone] Valor inválido:', valor);
     return res.status(400).json({ error: 'Valor inválido para pagamento.' });
   }
   if (!cliente || !cliente.nome || !cliente.email) {
-    console.error('[Stone] Dados do cliente ausentes ou incompletos:', cliente);
     return res.status(400).json({ error: 'Dados do cliente ausentes ou incompletos.' });
   }
   if (!Array.isArray(itens) || itens.length === 0) {
-    console.error('[Stone] Nenhum item informado:', itens);
     return res.status(400).json({ error: 'Nenhum item informado para pagamento.' });
   }
 
-  // Monta o payload para a Stone
+  // Monta o payload para o Pagar.me
   const payload = {
-    amount: Math.round(valor * 100),
-    description: descricao || 'Pedido Cajuia',
+    amount: Math.round(valor * 100), // valor em centavos
     payment_methods: ['credit_card', 'pix'],
     customer: {
       name: cliente.nome,
-      email: cliente.email
+      email: cliente.email,
+      type: 'individual'
     },
     items: itens.map(item => ({
       name: item.nome,
       quantity: item.quantidade,
-      unit_price: Math.round(item.preco * 100)
-    }))
+      value: Math.round(item.preco * 100)
+    })),
+    // Opcional: redirect_url para onde o cliente será enviado após o pagamento
+    // redirect_url: "https://seusite.com/obrigado"
   };
 
-  // Log do payload que será enviado para a Stone
-  console.log('--- [Stone] Payload enviado para Stone ---');
-  console.log(JSON.stringify(payload, null, 2));
-
   try {
-    const response = await fetch('https://api.stone.com.br/link/v3/charge', {
+    const response = await fetch('https://api.pagar.me/core/v5/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'merchant_id': STONE_CODE,
-        'saak': SAAK
+        'Authorization': PAGARME_API_KEY
       },
       body: JSON.stringify(payload)
     });
 
-    // Log do status da resposta HTTP
-    console.log('[Stone] Status HTTP da resposta:', response.status);
+    const data = await response.json();
 
-    // Tenta ler o corpo da resposta
-    let data;
-    try {
-      data = await response.json();
-    } catch (jsonErr) {
-      console.error('[Stone] Erro ao fazer parse do JSON de resposta:', jsonErr);
-      return res.status(500).json({ error: 'Erro ao interpretar resposta da Stone.' });
-    }
-
-    // Log do corpo da resposta da Stone
-    console.log('--- [Stone] Resposta da Stone ---');
-    console.log(JSON.stringify(data, null, 2));
-
-    if (response.ok && data.payment_link_url) {
-      res.json({ url: data.payment_link_url });
+    // O campo correto para o link de checkout pode variar conforme o tipo de integração.
+    // Para o checkout Pagar.me, normalmente é data.checkout.url ou data.checkout_url.
+    // Ajuste conforme a resposta real da API.
+    if (response.ok && data.checkout && data.checkout.url) {
+      res.json({ url: data.checkout.url });
+    } else if (response.ok && data.checkout_url) {
+      res.json({ url: data.checkout_url });
     } else {
-      // Log de erro detalhado
-      console.error('[Stone] Erro ao criar link:', data);
       res.status(400).json({ error: data });
     }
   } catch (err) {
-    // Log de erro de conexão ou inesperado
-    console.error('[Stone] Erro inesperado:', err);
     res.status(500).json({ error: err.message });
   }
 });
