@@ -82,7 +82,8 @@ app.post('/criar-link-pagarme', async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': PAGARME_API_KEY
+        'Authorization': `Bearer ${PAGARME_API_KEY}`,
+        'X-PagarMe-Account-Id': 'acc_Nznw5LTz1S8e9Pv8'
       },
       body: JSON.stringify(payload)
     });
