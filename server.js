@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Pagar.me credentials
-const PAGARME_API_KEY = 'sk_5353caff454c4f2eb6388ddcd06713e9';
+const PAGARME_API_KEY = 'sk_87e497b912294b16bf6a5f372744ffef';
 
 // Middlewares
 app.use(cors());
@@ -82,7 +82,7 @@ app.post('/criar-link-pagarme', async (req, res) => {
   console.log("[PAYLOAD] Enviado para Pagar.me:", JSON.stringify(payload, null, 2));
 
   try {
-    const response = await fetch('https://api.pagar.me/core/v5/orders', {
+    const response = await fetch('https://api.pagar.me/core/v5/paymentlinks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
