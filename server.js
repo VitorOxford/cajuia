@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Pagar.me credentials
-const PAGARME_API_KEY = 'sk_735c428d51e34423b6362601dfa75abf';
+const PAGARME_API_KEY = 'sk_5353caff454c4f2eb6388ddcd06713e9';
 
 // Middlewares
 app.use(cors());
@@ -82,8 +82,7 @@ app.post('/criar-link-pagarme', async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${PAGARME_API_KEY}`,
-        'X-PagarMe-Account-Id': 'acc_Nznw5LTz1S8e9Pv8'
+        'Authorization': `Bearer ${PAGARME_API_KEY}`
       },
       body: JSON.stringify(payload)
     });
