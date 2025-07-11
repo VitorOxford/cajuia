@@ -57,10 +57,9 @@ app.post('/criar-link-pagarme', async (req, res) => {
     return res.status(400).json({ error: 'Nenhum item informado para pagamento.' });
   }
 
-  // Monta o payload para o Pagar.me
+  // Monta o payload para o Pagar.me (API v5 exige payments!)
   const payload = {
     amount: Math.round(valor * 100), // valor em centavos
-    payment_methods: ['credit_card', 'pix'],
     customer: {
       name: cliente.nome,
       email: cliente.email,
@@ -71,7 +70,12 @@ app.post('/criar-link-pagarme', async (req, res) => {
       quantity: item.quantidade,
       value: Math.round(item.preco * 100)
     })),
-    // redirect_url: "https://seusite.com/obrigado"
+    payments: [
+      { payment_method: 'pix' },
+      { payment_method: 'credit_card' }
+    ],
+    description: descricao || 'Pedido Cajuia'
+    // Adicione outros campos obrigatórios se necessário
   };
 
   // Log do payload
@@ -112,7 +116,7 @@ app.post('/criar-link-pagarme', async (req, res) => {
     } else {
       // Log de erro detalhado
       console.error("[ERRO] Falha ao criar link de pagamento:", data);
-      res.status(400).json({ error: data });
+      res.status(response.status).json({ error: data, payload });
     }
   } catch (err) {
     // Log de erro de conexão ou inesperado
