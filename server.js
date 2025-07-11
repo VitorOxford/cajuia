@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Pagar.me credentials
-const PAGARME_API_KEY = 'sk_test_64abbdd8fda7441a82e0eab8154b67a8';
+const PAGARME_API_KEY = 'sk_735c428d51e34423b6362601dfa75abf';
 
 // Middlewares
 app.use(cors());
