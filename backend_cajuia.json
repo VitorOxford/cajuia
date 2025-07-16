@@ -4,17 +4,24 @@
     "heroBanners": [
       {
         "id": 1718810587634,
-        "titulo": "Promoção de Inverno",
-        "desconto": "45% OFF",
-        "subtitulo": "*Em todas as blusas selecionadas",
-        "imagemFundo": "https://images.pexels.com/photos/3755722/pexels-photo-3755722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        "titulo": " ",
+        "desconto": " ",
+        "subtitulo": " ",
+        "imagemFundo": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/9_eee39929-81b6-4ef9-bfdb-f15408fe9700.png?v=1750354046"
       },
       {
         "id": 1718810617267,
-        "titulo": "Nova Coleção",
-        "desconto": "Minimalista",
-        "subtitulo": "Descubra a elegância em cada detalhe",
-        "imagemFundo": "https://images.pexels.com/photos/7679883/pexels-photo-7679883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        "titulo": " ",
+        "desconto": " ",
+        "subtitulo": " ",
+        "imagemFundo": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/15.png?v=1750354046"
+      },
+      {
+        "id": 1752661748260,
+        "titulo": " ",
+        "desconto": " ",
+        "subtitulo": " ",
+        "imagemFundo": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/5.jpg?v=1748519181"
       }
     ]
   },
@@ -22,23 +29,23 @@
     {
       "id": 1,
       "nome": "Vestidos",
-      "icone": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/4_ec682a24-53fb-4bfc-b4cb-ae7caee2baef.jpg?v=1748519189"
+      "icone": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/IMG_2142_1.jpg?v=1750686217"
     },
     {
       "id": 2,
-      "nome": "Blusas",
-      "icone": "https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      "nome": "Macacões",
+      "icone": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/IMG_2186_1_392ec10b-7fd8-4574-8eab-197eda00c57a.jpg?v=1750686239"
     }
   ],
   "produtos": [
     {
       "id": 101,
-      "categoriaId": 1,
       "nome": "Vestido Floral Bege",
       "descricao": "Vestido leve e fluido com detalhes florais, ideal para dias quentes.",
       "preco": 189.9,
+      "categoriaId": 1,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/image_61_2.jpg?v=1750686239",
       "disponivel": true,
-      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/10.jpg?v=1748519189",
       "variacoes": {
         "tamanhos": [
           "P",
@@ -50,30 +57,30 @@
           "Off-white"
         ]
       },
-      "habilitarTamanhos": true,
-      "habilitarCores": true,
-      "imagensVariacoes": [
-        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/10.jpg?v=1748519189",
-        "",
-        ""
-      ],
-      "precoPromocional": 159.9,
-      "mostrarPrecoPromocional": true,
-      "precoPromocionalAtivo": true,
       "estoque": {
         "P": 4,
         "M": 2,
         "G": 1
-      }
+      },
+      "habilitarTamanhos": false,
+      "habilitarCores": false,
+      "imagensVariacoes": [
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/image_61_2.jpg?v=1750686239",
+        "",
+        ""
+      ],
+      "precoPromocional": 159.9,
+      "mostrarPrecoPromocional": false,
+      "precoPromocionalAtivo": false
     },
     {
       "id": 102,
-      "categoriaId": 1,
       "nome": "Vestido Marrom Elegante",
       "descricao": "Vestido sofisticado com tecido acetinado e caimento estruturado.",
       "preco": 229.9,
+      "categoriaId": 1,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/image_58_2.jpg?v=1750686239",
       "disponivel": true,
-      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
       "variacoes": {
         "tamanhos": [
           "P",
@@ -85,30 +92,30 @@
           "Caramelo"
         ]
       },
+      "estoque": {
+        "P": 5,
+        "M": 3,
+        "G": 2
+      },
       "habilitarTamanhos": true,
       "habilitarCores": true,
       "imagensVariacoes": [
-        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/image_58_2.jpg?v=1750686239",
         "",
         ""
       ],
       "precoPromocional": null,
       "mostrarPrecoPromocional": false,
-      "precoPromocionalAtivo": false,
-      "estoque": {
-        "P": 5,
-        "M": 3,
-        "G": 2
-      }
+      "precoPromocionalAtivo": false
     },
     {
       "id": 103,
-      "categoriaId": 1,
       "nome": "Vestido Longo Fenda Lateral",
       "descricao": "Vestido longo com fenda lateral elegante e alças finas.",
       "preco": 259.9,
+      "categoriaId": 1,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/IMG_3621_1.jpg?v=1750686217",
       "disponivel": true,
-      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/3_ad5c2bf4-f898-46ba-8e84-fe525db65958.jpg?v=1748519188",
       "variacoes": {
         "tamanhos": [
           "P",
@@ -120,30 +127,30 @@
           "Verde"
         ]
       },
+      "estoque": {
+        "P": 2,
+        "M": 4,
+        "G": 0
+      },
       "habilitarTamanhos": true,
       "habilitarCores": true,
       "imagensVariacoes": [
-        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/3_ad5c2bf4-f898-46ba-8e84-fe525db65958.jpg?v=1748519188",
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/IMG_3621_1.jpg?v=1750686217",
         "",
         ""
       ],
       "precoPromocional": 219.9,
       "mostrarPrecoPromocional": true,
-      "precoPromocionalAtivo": true,
-      "estoque": {
-        "P": 2,
-        "M": 4,
-        "G": 0
-      }
+      "precoPromocionalAtivo": true
     },
     {
       "id": 104,
-      "categoriaId": 1,
       "nome": "Vestido Minimalista Marrom",
       "descricao": "Modelo minimalista, leve e com toque macio para uso casual e elegante.",
       "preco": 199.9,
+      "categoriaId": 1,
+      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/image_64_2.jpg?v=1750686216",
       "disponivel": true,
-      "imagem": "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
       "variacoes": {
         "tamanhos": [
           "P",
@@ -154,21 +161,21 @@
           "Marrom"
         ]
       },
+      "estoque": {
+        "P": 6,
+        "M": 1,
+        "G": 2
+      },
       "habilitarTamanhos": true,
       "habilitarCores": true,
       "imagensVariacoes": [
-        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/8.jpg?v=1748519189",
+        "https://cdn.shopify.com/s/files/1/0927/1286/1998/files/image_64_2.jpg?v=1750686216",
         "",
         ""
       ],
       "precoPromocional": null,
       "mostrarPrecoPromocional": false,
-      "precoPromocionalAtivo": false,
-      "estoque": {
-        "P": 6,
-        "M": 1,
-        "G": 2
-      }
+      "precoPromocionalAtivo": false
     }
   ]
 }
