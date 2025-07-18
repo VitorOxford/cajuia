@@ -1,17 +1,28 @@
+require('dotenv').config(); // Carrega as variáveis do arquivo .env para process.env
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
 const fetch = require('node-fetch');
 const axios = require('axios');
+const { OpenAI } = require('openai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// --- CREDENCIAIS E CHAVES DE API --- 
-const PAGARME_API_KEY = 'sk_87e497b912294b16bf6a5f372744ffef';
-const MELHORENVIO_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGVlYmIzYzk0OTE0M2Q0MTA4OTk4M2IyMTE4MzY1YzhhYWM2MzlmZjY0NWUyMDlkZTlmNDc5YWM4YjMwMDg2ZWJhM2YxMjExYjdkN2FjOGMiLCJpYXQiOjE3NTI0OTE2OTMuNDcyNjMxLCJuYmYiOjE3NTI0OTE2OTMuNDcyNjMzLCJleHAiOjE3ODQwMjc2OTMuNDYxOTQ1LCJzdWIiOiI5ZjVkOWE0Yi04NzYxLTQwOGYtOTQzMS03MDI5YTFlZGI5MWQiLCJzY29wZXMiOlsiY2FydC1yZWFkIiwiY2FydC13cml0ZSIsImNvbXBhbmllcy1yZWFkIiwiY29tcGFuaWVzLXdyaXRlIiwiY291cG9ucy1yZWFkIiwiY291cG9ucy13cml0ZSIsIm5vdGlmaWNhdGlvbnMtcmVhZCIsIm9yZGVycy1yZWFkIiwicHJvZHVjdHMtcmVhZCIsInByb2R1Y3RzLWRlc3Ryb3kiLCJwcm9kdWN0cy13cml0ZSIsInB1cmNoYXNlcy1yZWFkIiwic2hpcHBpbmctY2FsY3VsYXRlIiwic2hpcHBpbmctY2FuY2VsIiwic2hpcHBpbmctY2hlY2tvdXQiLCJzaGlwcGluZy1jb21wYW5pZXMiLCJzaGlwcGluZy1nZW5lcmF0ZSIsInNoaXBwaW5nLXByZXZpZXciLCJzaGlwcGluZy1wcmludCIsInNoaXBwaW5nLXNoYXJlIiwic2hpcHBpbmctdHJhY2tpbmciLCJlY29tbWVyY2Utc2hpcHBpbmciLCJ0cmFuc2FjdGlvbnMtcmVhZCIsInVzZXJzLXJlYWQiLCJ1c2Vycy13cml0ZSIsIndlYmhvb2tzLXJlYWQiLCJ3ZWJob29rcy13cml0ZSIsIndlYmhvb2tzLWRlbGV0ZSIsInRkZWFsZXItd2ViaG9vayJdfQ.dR-J9Op1CiqYO1wnZyqK6QLbsb1URLoe7CqTYECbaMyZR1mxghY6DMGnAfl0z_JUkIbHNHw8b0AUqceMtcH9u50WnexA_4AZ8K5x-l0nUERg3fhUTQQhrlwMAIFgcgJfD0rBEed_wEplQw-yR-xozIaf7WP9vFHE-Tn7JwmItQYay55ICGiW-AVGRKnBfvTWdeVlar6BGpuSKDeLKuVY9P631dDV-UUNrtZBCIpzP_JkDw0U6pgBYmkvf3Io1qYpc4TwMPyQDg0KGiaJupL4RMXhM1X7NuJDIr-G-CkUd55kH_a4GBCO1MG2ezbBQO0KId31YOw6GAIr2eYw1fojpusjUDXVNHJxuB94PEgh6oEhhBudPuJ5Teucblhj6bNCH1ufkLcPWGriFlCBCil-iAN5rll_Dr06ug-JgnfbWS-MoYR4ctz79zvDBDnqKN3EBLEUcUWpduGOwX9vyvxqbiD8AjdQrC4p5gn2wOjHePnNLdcfLU7Mp49SuIbcjduytDnbK38yN3PL9-lvanSr80psaL2rZAicye84m6TdJdzW0PUu-6_xUiwcVPy52xrQ_A4XJ-izD-opqnvOWhtMPStVMEqC7b55C-OJ7PfYBouxFSiFBrRruRc9DJzWYnrxUOOizswTxs91s5OF-1r7rSMVRgLzxdaXOdsRVHivPDQ';
+// --- CREDENCIAIS E CHAVES DE API (LIDAS DAS VARIÁVEIS DE AMBIENTE) --- 
+const PAGARME_API_KEY = process.env.PAGARME_API_KEY;
+const MELHORENVIO_TOKEN = process.env.MELHORENVIO_TOKEN;
 const CEP_ORIGEM = '18532-044';
+
+// --- CONFIGURAÇÃO DA OPENAI ---
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const ASSISTANT_ID = process.env.ASSISTANT_ID;
+
+if (!OPENAI_API_KEY || !ASSISTANT_ID) {
+    console.error("[ERRO CRÍTICO] Chaves OPENAI_API_KEY e ASSISTANT_ID devem ser configuradas nas variáveis de ambiente.");
+}
+const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
 // --- MIDDLEWARES ---
 app.use(cors());
@@ -43,10 +54,8 @@ app.post('/criar-link-pagarme', async (req, res) => {
   console.log("========== NOVA REQUISIÇÃO /criar-link-pagarme ==========");
   console.log("[REQUEST] Body recebido:", JSON.stringify(req.body, null, 2));
 
-  // Recebe todos os dados do corpo da requisição
   const { cliente, itens, valor_frete } = req.body;
 
-  // --- VALIDAÇÃO DOS DADOS RECEBIDOS ---
   if (!cliente || !itens || !itens.length) {
     return res.status(400).json({ error: { message: "Dados do cliente ou itens ausentes." } });
   }
@@ -91,9 +100,8 @@ app.post('/criar-link-pagarme', async (req, res) => {
       quantity: item.quantidade
     })),
     
-    // Objeto de frete adicionado ao pedido
     shipping: {
-        amount: Math.round(valor_frete * 100), // Convertendo o frete para centavos
+        amount: Math.round(valor_frete * 100),
         description: "Custo de Envio",
         recipient_name: cliente.nome,
         recipient_phone: cliente.telefone,
@@ -106,7 +114,6 @@ app.post('/criar-link-pagarme', async (req, res) => {
             country: "BR"
         }
     },
-
     payments: [{
       payment_method: "checkout",
       checkout: {
@@ -197,10 +204,55 @@ app.post('/calcular-frete', async (req, res) => {
     }
 });
 
+// --- NOVA ROTA PARA O ASSISTENTE DE IA ---
+app.post('/ask-ia', async (req, res) => {
+    const { message } = req.body;
+
+    if (!message) {
+        return res.status(400).json({ error: 'Nenhuma mensagem fornecida.' });
+    }
+
+    try {
+        const thread = await openai.beta.threads.create();
+
+        await openai.beta.threads.messages.create(thread.id, {
+            role: "user",
+            content: message,
+        });
+
+        const run = await openai.beta.threads.runs.create(thread.id, {
+            assistant_id: ASSISTANT_ID,
+        });
+
+        let runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+        while (runStatus.status !== "completed") {
+            await new Promise((resolve) => setTimeout(resolve, 300));
+            runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+
+            if (["failed", "cancelled", "expired"].includes(runStatus.status)) {
+                throw new Error(`A execução falhou com o status: ${runStatus.status}`);
+            }
+        }
+
+        const messages = await openai.beta.threads.messages.list(thread.id);
+        const aiResponse = messages.data.find(msg => msg.role === 'assistant');
+
+        if (aiResponse && aiResponse.content[0].type === 'text') {
+            res.json({ reply: aiResponse.content[0].text.value });
+        } else {
+            throw new Error("O assistente não forneceu uma resposta em texto.");
+        }
+
+    } catch (error) {
+        console.error("[ERRO NA ROTA DA IA]", error);
+        res.status(500).json({ error: "Ocorreu um erro ao comunicar com o assistente." });
+    }
+});
+
 // --- INICIALIZAÇÃO DO SERVIDOR ---
 app.listen(PORT, () => {
   console.log("==========================================================");
-  console.log(`[INFO] Servidor Cajuia rodando em http://localhost:${PORT}`);
+  console.log(`[INFO] Servidor Cajuia rodando na porta ${PORT}`);
   console.log(`[INFO] Data/Hora: ${new Date().toLocaleString('pt-BR')}`);
   console.log("==========================================================");
 });
